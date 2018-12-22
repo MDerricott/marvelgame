@@ -20,6 +20,7 @@ function HeroCard (props){
         
 
 <img src={props.logo} alt="testing" />
+
             
         
         
