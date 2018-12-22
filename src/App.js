@@ -49,7 +49,7 @@ state = [
 
 
 
-<Grid container  justify="center" xs={12} style={{height:200}}>Headline</Grid>
+<Grid container  justify="center" style={{height:200}}>Headline</Grid>
 
       
        <Wrapper>
@@ -58,10 +58,10 @@ state = [
        <img src={"./components/svgs/hydra.svg"} alt="testing"/> */}
        
 
-          <Grid container  justify="center" spacing={8}>
+          <Grid container  justify="center">
             
             {this.state.map(value => (
-              <Grid key={value} item xs={3}>
+              <Grid key={value} item xs={12} md={4} lg={3} spacing={8}>
                 <HeroCard  logo={value}/>
                 {console.log(value)}
                 
