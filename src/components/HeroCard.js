@@ -1,6 +1,6 @@
 import React from "react"
 import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
+
 // import logo from './svgs/captainamerica.svg';
 
 
@@ -15,11 +15,11 @@ const styles = {
 function HeroCard (props){
     
     return (
-        <Card style={styles.card}> 
+        <Card style={styles.card} onClick={props.handleBtnClick} > 
             
         
 
-<img src={props.logo} alt="testing" />
+<img src={props.logo} alt="testing" id={props.id} />
 
             
         
