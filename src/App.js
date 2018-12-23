@@ -16,7 +16,7 @@ import punisher from './components/svgs/punisher.svg';
 import spiderman from './components/svgs/spiderman.svg';
 import superman from './components/svgs/superman.svg';
 import suicidesquad from './components/svgs/suicidesquad.svg';
-import { nest } from 'recompose';
+
 
 // import heros from './components/heros.json'
 
@@ -110,34 +110,57 @@ topScore: 0
 
 
 handleBtnClick = event => {
-    console.log("clicked")
+
 
     const id = event.target.attributes.getNamedItem("id").value;
-    console.log(id)
+
     const newState = { ...this.state };
     const checkClicked = newState.images[id].clicked;
     
-    console.log(checkClicked)
+
 
     const newClicked = (checkClicked ?  this.clicked(newState) :  this.notClicked(newState, id))
-    console.log(newClicked);
+  
     this.setState(newState);
-    console.log(newState)
+
 }
 
 
 clicked = (newState) => {
-  console.log("you clicked this one");
-  this.random(newState)
+
   
+  console.log("new top score " + (newState.score > newState.topScore ? newState.score : newState.topScore) )
+ 
+
+  newState.images.map(value =>{
+    value.clicked = false
+  });
+  newState.topScore = newState.topScore < newState.score ? newState.score : newState.topScore
+
+  this.random(newState)
+  newState.score = 0;
 }
 
+topScorer = (newState) => {
+  return (newState.topScore < newState.score ? newState.score : newState.topScore)
+}
 notClicked =(newState, id) => {
   
-  newState.images[id].clicked = true;
-  newState.score ++;
+    newState.images[id].clicked = true;
+
+    this.scorer(newState);
+
   this.random(newState);
+
+  console.log("score " + newState.score);
 }
+
+scorer = (newState) => {
+  newState.score ++
+ 
+}
+
+
 
 
 random = (newState) => {
@@ -167,7 +190,9 @@ random = (newState) => {
       
        <Wrapper>
         Score: {this.state.score}
-        Top Score: {this.state.score}
+
+
+        Top Score: {this.state.topScore}
        
 
           <Grid container  justify="center" spacing={8}>
