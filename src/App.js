@@ -18,86 +18,56 @@ import superman from './components/svgs/superman.svg';
 import suicidesquad from './components/svgs/suicidesquad.svg';
 
 
-// import heros from './components/heros.json'
-
-
-// const {images = [
-//   hydra,
-//   shield,
-//   captainamerica,
-//   deadpool,
-//   fantasticfour,
-//   greenlantern,
-//   hulk,
-//   ironman,
-//   punisher,
-//   spiderman,
-//   superman,
-//   suicidesquad
-// ]}
-
 
 class App extends Component {
 
 state = {
   images: [
     {
-      // id: 1,
       image: hydra,
       clicked: false
     },
     {
-      // id: 2,
       image: shield,
       clicked: false
     },
     {
-      // id: 3,
       image: captainamerica,
       clicked: false}
     ,
     {
-      // id: 4,
       image: deadpool,
       clicked: false
     },
     {
-      // id: 5,
       image: fantasticfour,
       clicked: false
     },
     {
-      // id: 6,
       image: greenlantern,
       clicked: false
     },
     {
-      // id: 7,
       image:  hulk,
       clicked: false
     },
-    {
-      // id: 8, 
+    { 
       image: ironman,
       clicked: false
     },
     {
-      // id: 9, 
       image: punisher,
       clicked: false
     },
     {
-      // id: 10,
       image: spiderman,
       clicked: false
     },
     {
-      // id: 11,
       image: superman,
       clicked: false
     },
     {
-      // id: 12,
       image: suicidesquad,
       clicked: false
     }
@@ -106,29 +76,18 @@ score: 0,
 topScore: 0
 };
   
-
-
-
+//Handles the Click on the SVGs
 handleBtnClick = event => {
-
-
     const id = event.target.attributes.getNamedItem("id").value;
-
     const newState = { ...this.state };
     const checkClicked = newState.images[id].clicked;
-    
-
-
     const newClicked = (checkClicked ?  this.clicked(newState) :  this.notClicked(newState, id))
   
     this.setState(newState);
-
 }
 
 
 clicked = (newState) => {
-
-  
   console.log("new top score " + (newState.score > newState.topScore ? newState.score : newState.topScore) )
  
 
@@ -171,28 +130,25 @@ random = (newState) => {
     return newState;
 };
 
-
-  // newState.images.map((value) => {
-  // console.log(newState.images.splice(Math.floor(Math.random() * 12) + 1,0, value))
-  // })
- 
-
-
-
   render() {
     return (
 <div>
 
 
 
-<Grid container  justify="center" style={{height:200}}>Headline</Grid>
+<Grid container className="header" justify="center" style={{height:200}} />
 
-      
+
+<Grid container justify="center" style={{height:50}}> 
+<Grid container justify="center" className="score" style={{height:50}}> Do you remember which logo you clicked? If not, your score will restart. Can you beat the top score? </Grid>
+
+      <Grid item className="score" xs={12} md={6} > <strong>Your Score:</strong> {this.state.score}</Grid>
+      <Grid item className="score" xs={12} md={6} > <strong>Top Score:</strong> {this.state.topScore}</Grid>
+</Grid>
+
+<Grid container justify="center" style={{height:50}} /> 
        <Wrapper>
-        Score: {this.state.score}
-
-
-        Top Score: {this.state.topScore}
+        
        
 
           <Grid container  justify="center" spacing={8}>
